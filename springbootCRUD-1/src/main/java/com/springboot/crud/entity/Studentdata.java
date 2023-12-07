@@ -1,13 +1,17 @@
 package com.springboot.crud.entity;
 
 import jakarta.persistence.Entity;
+
+import jakarta.persistence.Table;
+
 import jakarta.persistence.Id;
 
 @Entity
+@Table(name = "studentdata")
 public class Studentdata {
 
     @Id
-  
+   
     private int id;
 
     private String firstname;
