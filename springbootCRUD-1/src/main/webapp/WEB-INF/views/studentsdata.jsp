@@ -15,17 +15,17 @@
     <script>
     document.addEventListener('DOMContentLoaded', function () {
 
-        var studentsData = [];
+        var students = [];
         var selectedRecords = []; // Declare selectedRecords at a higher scope
 
         // Initialize the DataGrid
         ej.grids.Grid.Inject(ej.grids.Edit, ej.grids.Toolbar);
         var grid = new ej.grids.Grid({
-            dataSource: studentsData,
+            dataSource: students,
             editSettings: { allowEditing: true, allowDeleting: true, allowAdding: true, mode: 'Dialog', height: 400 },
             toolbar: ['Add', 'Edit', 'Delete', 'Search'],
             columns: [
-                { field: 'id', headerText: 'RollNo'},
+                { field: 'id', headerText: 'RollNo' , isPrimaryKey: true},
                 { field: 'firstname', headerText: 'First Name' },
                 { field: 'lastname', headerText: 'Last Name' },
                 { field: 'email', headerText: 'Email' },
