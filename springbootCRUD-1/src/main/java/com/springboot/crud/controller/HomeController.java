@@ -48,111 +48,43 @@ public class HomeController {
             // Log the exception using a logger
             // Handle the exception appropriately
         }
-        return "form";
-    }
-
-    @PostMapping("/submitform")
-    public String saveData(@ModelAttribute("student") Studentdata studentdata, Model model) {
-        try {
-            // Save the studentdata object using the service
-            studentdataService.saveStudent(studentdata);
-
-            // Get the updated list of all students from the service (including the newly saved one)
-            List<Studentdata> allStudents = (List<Studentdata>) studentdataService.getAllStudents();
-
-            // Add the updated list of students to the model for the "studentsdata.jsp" page
-            model.addAttribute("students", allStudents);
-            System.out.println(allStudents);
-            // Add the student data to the model for the "studentsdata.jsp" page
-            model.addAttribute("student", studentdata);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Log the exception using a logger
-            // Handle the exception appropriately, e.g., display an error message
-        }
-
         return "studentsdata";
     }
+
+
     
-    @GetMapping("/allstudents")
-    @ResponseBody
-    public List<Studentdata> getAllStudentsJson() {
-        try {
-            // Return the list of all students as JSON
-            return (List<Studentdata>) studentdataService.getAllStudents();
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Log the exception using a logger
-            // Handle the exception appropriately, e.g., return an empty list or an error message
-            return Collections.emptyList();
-        }
-    }
+    @GetMapping("/students")
+    public String getAllStudentsJson(Model model) {
+    	return "studentsdata";
 
 
 }
-  
+    @GetMapping("/allstudents")
+    @ResponseBody
+    public   List<Studentdata>  getAllStudentsJson() {
+    	
+        try {
+            // Return the list of all students as JSON
+        	  // Get the updated list of all students from the service (including the newly saved one)
+            List<Studentdata> allStudents = (List<Studentdata>) studentdataService.getAllStudents();
+
+            // Add the updated list of students to the model for the "studentsdata.jsp" page
+          
+            System.out.println(allStudents);
+            // Add the student data to the model for the "studentsdata.jsp" page
+           return  allStudents;
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+           
+}
+        
+      
 
 
+}
+}
 
-//2nd method
 
-//@Controller
-//@RequestMapping("/")
-//public class HomeController {
-//
-//    @Autowired
-//    private StudentdataService studentdataService;
-//
-//  
-//  
-//    @GetMapping
-//    public String saveData(@ModelAttribute("student") Studentdata studentdata, Model model) {
-//        try {
-//            // Save the studentdata object using the service
-//            studentdataService.saveStudent(studentdata);
-//
-//            // Get the updated list of all students from the service (including the newly saved one)
-//            List<Studentdata> allStudents = (List<Studentdata>) studentdataService.getAllStudents();
-//
-//            if (allStudents.isEmpty()) {
-//                // If no records are available, display a message
-//                model.addAttribute("noRecordsMessage", "No records available.");
-//            } else {
-//                // Add the updated list of students to the model for the "studentsdata.jsp" page
-//                model.addAttribute("students", allStudents);
-//
-//                // Add the student data to the model for the "studentsdata.jsp" page
-//                model.addAttribute("student", studentdata);
-//            }
-//
-//            System.out.println(allStudents);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            // Log the exception using a logger
-//            // Handle the exception appropriately, e.g., display an error message
-//        }
-//
-//        return "studentsdata";
-//    }
-//
-//    
-//    @GetMapping("/allstudents")
-//    @ResponseBody
-//    public List<Studentdata> getAllStudentsJson() {
-//        try {
-//            // Return the list of all students as JSON
-//            return (List<Studentdata>) studentdataService.getAllStudents();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            // Log the exception using a logger
-//            // Handle the exception appropriately, e.g., return an empty list or an error message
-//            return Collections.emptyList();
-//        }
-//    }
-//
-//
-//}
-//  
 
