@@ -51,7 +51,6 @@ public class HomeController {
         return "studentsdata";
     }
 
-
     
     @GetMapping("/students")
     public String getAllStudentsJson(Model model) {
@@ -67,11 +66,7 @@ public class HomeController {
             // Return the list of all students as JSON
         	  // Get the updated list of all students from the service (including the newly saved one)
             List<Studentdata> allStudents = (List<Studentdata>) studentdataService.getAllStudents();
-
-            // Add the updated list of students to the model for the "studentsdata.jsp" page
-          
-            System.out.println(allStudents);
-            // Add the student data to the model for the "studentsdata.jsp" page
+           System.out.println(allStudents);
            return  allStudents;
             
         } catch (Exception e) {
@@ -79,10 +74,6 @@ public class HomeController {
             return Collections.emptyList();
            
 }
-        
-      
-
-
 }
 }
 
